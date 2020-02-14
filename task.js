@@ -27,12 +27,16 @@ function changeColor() {
 }
 
 function hendlerClick(event) {
+  hendlerStop(event);
   timerId = setInterval(changeColor, 1000);
+  refs.btnStart.removeEventListener("click", hendlerClick);
+
+  console.log(timerId);
 }
 
 function hendlerStop(event) {
-  refs.btnStart.removeEventListener("click", hendlerClick);
   clearInterval(timerId);
+  refs.btnStart.addEventListener("click", hendlerClick);
 }
 
 refs.btnStart.addEventListener("click", hendlerClick);
